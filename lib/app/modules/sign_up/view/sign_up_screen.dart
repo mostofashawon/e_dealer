@@ -1,9 +1,13 @@
-import 'package:e_dealer/app/modules/sign_in/sign_in_screen.dart';
+import 'package:e_dealer/app/modules/sign_in/view/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/sign_up_controller.dart';
+
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  // const SignUpScreen({super.key});
+
+  final SignUpController controller = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,137 +45,157 @@ class SignUpScreen extends StatelessWidget {
             horizontal: 20,
             vertical: 20,
           ),
-          child: Column(
+          child: Stack(
             children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  child: Row(
+              Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            "Dealership Registration",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: screenHeight * 0.025,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 10,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        bottom: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        // color: Colors.red,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            regi_field(
+                              "Your Name",
+                              Icon(
+                                Icons.person,
+                              ),
+                            ),
+                            regi_field(
+                              "Phone No",
+                              Icon(
+                                Icons.call,
+                              ),
+                            ),
+                            regi_field(
+                              "Email Address",
+                              Icon(
+                                Icons.email,
+                              ),
+                            ),
+                            regi_field(
+                              "Password",
+                              Icon(
+                                Icons.call,
+                              ),
+                            ),
+                            regi_field(
+                              "Company Name",
+                              Icon(
+                                Icons.business_outlined,
+                              ),
+                            ),
+                            regi_field(
+                              "Trade License No",
+                              Icon(
+                                Icons.call,
+                              ),
+                            ),
+                            regi_field(
+                              "National ID No",
+                              Icon(
+                                Icons.person,
+                              ),
+                            ),
+                            upload_file(
+                              screenWidth: screenWidth,
+                              screenHeight: screenHeight,
+                              uploadTitle: 'Upload Trade License:',
+                            ),
+                            upload_file(
+                              screenWidth: screenWidth,
+                              screenHeight: screenHeight,
+                              uploadTitle: 'Upload Nid Card:',
+                            ),
+                            upload_file(
+                              screenWidth: screenWidth,
+                              screenHeight: screenHeight,
+                              uploadTitle: 'Upload Photo:',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      controller.signUpUser();
+                    },
+                    child: Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Submit Data",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: screenHeight * 0.030),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Dealership Registration",
+                        "Allready Registered ? ",
                         style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: screenHeight * 0.025,
-                          color: Colors.blueGrey,
+                          fontSize: 15,
+                          color: Colors.green,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => SignInScreen());
+                        },
+                        child: Text(
+                          "Sign in Here",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.green,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 10,
-                child: Container(
-                  margin: EdgeInsets.only(
-                    bottom: 20,
-                  ),
-                  decoration: BoxDecoration(
-                      // color: Colors.red,
-                      ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        regi_field(
-                          "Your Name",
-                          Icon(
-                            Icons.person,
-                          ),
-                        ),
-                        regi_field(
-                          "Phone No",
-                          Icon(
-                            Icons.call,
-                          ),
-                        ),
-                        regi_field(
-                          "Email Address",
-                          Icon(
-                            Icons.email,
-                          ),
-                        ),
-                        regi_field(
-                          "Company Name",
-                          Icon(
-                            Icons.business_outlined,
-                          ),
-                        ),
-                        regi_field(
-                          "Trade License No",
-                          Icon(
-                            Icons.call,
-                          ),
-                        ),
-                        regi_field(
-                          "National ID No",
-                          Icon(
-                            Icons.person,
-                          ),
-                        ),
-                        upload_file(
-                          screenWidth: screenWidth,
-                          screenHeight: screenHeight,
-                          uploadTitle: 'Upload Trade License:',
-                        ),
-                        upload_file(
-                          screenWidth: screenWidth,
-                          screenHeight: screenHeight,
-                          uploadTitle: 'Upload Nid Card:',
-                        ),
-                        upload_file(
-                          screenWidth: screenWidth,
-                          screenHeight: screenHeight,
-                          uploadTitle: 'Upload Photo:',
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey,
-                ),
-                child: Center(
-                  child: Text(
-                    "Submit Data",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: screenHeight * 0.030),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Allready Registered ? ",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.green,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => SignInScreen());
-                    },
-                    child: Text(
-                      "Sign in Here",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.green,
-                      ),
-                    ),
-                  ),
                 ],
               ),
+              controller.isLoading == true ?
+                  Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(),
+                  ) : Container()
             ],
           ),
         ));
@@ -192,6 +216,14 @@ class SignUpScreen extends StatelessWidget {
           border: InputBorder.none,
           hintText: hintTxt,
         ),
+        onChanged: (value){
+          hintTxt == 'Email Address' ?
+              controller.email.value = value.toString() :
+              hintTxt == 'Password' ?
+                  controller.password.value = value.toString() :
+                  controller.name.value = value.toString();
+
+        },
       ),
     );
   }

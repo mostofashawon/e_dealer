@@ -7,6 +7,11 @@ class SignUpController extends GetxController {
   //TODO: Implement SignUpController
 
   final count = 0.obs;
+  var email = "".obs;
+  var password = "".obs;
+  var name = "".obs;
+  var isLoading = false;
+
   @override
   void onInit() {
     super.onInit();
@@ -21,12 +26,13 @@ class SignUpController extends GetxController {
   void onClose() {}
   void increment() => count.value++;
 
-  void signupUser(
-      String email, String password, String name) async {
+  Future<void> signUpUser() async {
     try {
+      isLoading = true;
       UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+          .createUserWithEmailAndPassword(email: email.value, password: password.value);
 
+      isLoading = false;
       Get.snackbar(
         "Status",
         "Registration Successful",
@@ -39,6 +45,7 @@ class SignUpController extends GetxController {
       // await FirestoreServices.saveUser(name, email, userCredential.user!.uid);
 
     } on FirebaseAuthException catch (e) {
+      isLoading = false;
       if (e.code == 'weak-password') {
 
         Get.snackbar(

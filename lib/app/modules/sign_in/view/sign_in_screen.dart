@@ -2,8 +2,12 @@ import 'package:e_dealer/app/modules/sign_up/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/sign_in_controller.dart';
+
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  // const SignInScreen({super.key});
+
+  final SignInController controller = Get.put(SignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,7 @@ class SignInScreen extends StatelessWidget {
                 height: 20,
               ),
               signin_field(
-                "Phone No",
+                "User Mail",
                 Icon(
                   Icons.login,
                 ),
@@ -61,24 +65,29 @@ class SignInScreen extends StatelessWidget {
                   Icons.password,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(
-                  left: 30,
-                  right: 30,
-                  top: 30,
-                ),
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blueGrey,
-                ),
-                child: Center(
-                  child: Text(
-                    "Log IN",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: screenHeight * 0.030,
+              GestureDetector(
+                onTap: (){
+                  controller.signInUser();
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: 30,
+                    right: 30,
+                    top: 30,
+                  ),
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.blueGrey,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Log IN",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: screenHeight * 0.030,
+                      ),
                     ),
                   ),
                 ),
@@ -133,6 +142,11 @@ class SignInScreen extends StatelessWidget {
           border: InputBorder.none,
           hintText: hintTxt,
         ),
+        onChanged: (value){
+          hintTxt == "User Mail" ?
+              controller.email.value = value.toString() :
+              controller.password.value = value.toString();
+        },
       ),
     );
   }
