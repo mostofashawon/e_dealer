@@ -1,5 +1,5 @@
 import 'package:e_dealer/app/modules/sign_in/sign_in_screen.dart';
-import 'package:e_dealer/app/modules/sign_up/sign_up_screen.dart';
+import 'package:e_dealer/app/modules/sign_up/view/sign_up_screen.dart';
 import 'package:get/get.dart';
 
 import 'package:e_dealer/app/modules/home/bindings/home_binding.dart';

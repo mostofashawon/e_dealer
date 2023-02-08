@@ -1,4 +1,4 @@
-import 'package:e_dealer/app/modules/sign_up/sign_up_screen.dart';
+import 'package:e_dealer/app/modules/sign_up/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
