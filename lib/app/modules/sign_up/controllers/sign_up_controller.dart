@@ -1,6 +1,8 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io';
 
 
 class SignUpController extends GetxController {
@@ -11,6 +13,18 @@ class SignUpController extends GetxController {
   var password = "".obs;
   var name = "".obs;
   var isLoading = false;
+
+  File? tradeLicenceFile;
+
+  var tradeFileName = ''.obs;
+
+  File? nidFile;
+
+  var nidFileName = ''.obs;
+
+  File? image;
+
+  var imageName = ''.obs;
 
   @override
   void onInit() {
@@ -68,6 +82,29 @@ class SignUpController extends GetxController {
       }
     } catch (e) {
      print(e.toString());
+    }
+  }
+
+
+  Future<void> getFile(String type) async {
+
+    final pickedFile = await FilePicker.platform.pickFiles();
+
+    if(pickedFile != null){
+       if(type == "trade"){
+         tradeLicenceFile = File(pickedFile.files.single.path.toString());
+         tradeFileName.value = pickedFile.files.single.name.toString();
+       }
+       else if(type == "nid"){
+         nidFile = File(pickedFile.files.single.path.toString());
+         nidFileName.value = pickedFile.files.single.name.toString();
+       }
+       else {
+         image = File(pickedFile.files.single.path.toString());
+         imageName.value = pickedFile.files.single.name.toString();
+       }
+
+
     }
   }
 }

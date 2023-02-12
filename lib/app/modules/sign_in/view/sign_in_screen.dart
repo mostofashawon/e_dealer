@@ -137,6 +137,7 @@ class SignInScreen extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        obscureText: hintTxt == 'Password' ? true : false,
         decoration: InputDecoration(
           prefixIcon: iconsymble,
           border: InputBorder.none,

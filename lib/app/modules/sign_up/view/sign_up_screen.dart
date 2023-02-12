@@ -211,6 +211,7 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        obscureText: hintTxt == 'Password' ? true : false,
         decoration: InputDecoration(
           prefixIcon: iconsymble,
           border: InputBorder.none,
@@ -230,7 +231,7 @@ class SignUpScreen extends StatelessWidget {
 }
 
 class upload_file extends StatelessWidget {
-  const upload_file({
+   upload_file({
     super.key,
     required this.screenWidth,
     required this.screenHeight,
@@ -241,36 +242,52 @@ class upload_file extends StatelessWidget {
   final double screenHeight;
   final String uploadTitle;
 
+  final SignUpController controller = Get.put(SignUpController());
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      height: 60,
-      width: screenWidth,
-      decoration: BoxDecoration(
-        color: Colors.blueGrey,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
+    return GestureDetector(
+      onTap: (){
+        uploadTitle == 'Upload Trade License:' ?
+           controller.getFile('trade') :
+        uploadTitle == 'Upload Nid Card:' ?
+            controller.getFile('nid') :
+            controller.getFile('image') ;
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10),
+        height: 60,
+        width: screenWidth,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
         ),
-        child: Row(
-          children: [
-            Text(
-              uploadTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Row(
+            children: [
+              Obx(() => Text(
+                uploadTitle == 'Upload Trade License:' ?
+                controller.tradeFileName == "" ? 'Upload Trade License:' :
+                controller.nidFileName.toString() :   uploadTitle == 'Upload Nid Card:' ?
+                controller.nidFileName == "" ? 'Upload Nid Card:' :
+                controller.nidFileName.toString() : controller.imageName == "" ?
+                'Upload Photo:' : controller.imageName.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontSize: screenHeight * 0.020,
+                ),
+              )),
+              Spacer(),
+              Icon(
+                Icons.upload_file,
                 color: Colors.white,
-                fontSize: screenHeight * 0.020,
+                size: screenHeight * 0.030,
               ),
-            ),
-            Spacer(),
-            Icon(
-              Icons.upload_file,
-              color: Colors.white,
-              size: screenHeight * 0.030,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
