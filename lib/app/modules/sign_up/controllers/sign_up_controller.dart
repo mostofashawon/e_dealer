@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +14,10 @@ class SignUpController extends GetxController {
   var email = "".obs;
   var password = "".obs;
   var name = "".obs;
+  var phone = "".obs;
+  var companyName = "".obs;
+  var tradeId = "".obs;
+  var nid = "".obs;
   var isLoading = false;
 
   File? tradeLicenceFile;
@@ -25,6 +31,8 @@ class SignUpController extends GetxController {
   File? image;
 
   var imageName = ''.obs;
+
+  var storage = FirebaseStorage.instance;
 
   @override
   void onInit() {
@@ -46,6 +54,8 @@ class SignUpController extends GetxController {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email.value, password: password.value);
 
+      await saveUserInfo(userCredential.user!.uid);
+
       isLoading = false;
       Get.snackbar(
         "Status",
@@ -56,7 +66,6 @@ class SignUpController extends GetxController {
 
       );
 
-      // await FirestoreServices.saveUser(name, email, userCredential.user!.uid);
 
     } on FirebaseAuthException catch (e) {
       isLoading = false;
@@ -94,6 +103,7 @@ class SignUpController extends GetxController {
        if(type == "trade"){
          tradeLicenceFile = File(pickedFile.files.single.path.toString());
          tradeFileName.value = pickedFile.files.single.name.toString();
+
        }
        else if(type == "nid"){
          nidFile = File(pickedFile.files.single.path.toString());
@@ -103,8 +113,31 @@ class SignUpController extends GetxController {
          image = File(pickedFile.files.single.path.toString());
          imageName.value = pickedFile.files.single.name.toString();
        }
-
-
     }
+  }
+
+  Future<void> saveUserInfo(String id) async {
+    TaskSnapshot tradeSnapShot = await storage.ref('user_info').putFile(tradeLicenceFile!);
+    TaskSnapshot nidSnapShot = await storage.ref('user_info').putFile(nidFile!!);
+    TaskSnapshot imageSnapShot = await storage.ref('user_info').putFile(image!);
+    final String tradeUrl = await tradeSnapShot.ref.getDownloadURL();
+    final String nidUrl = await nidSnapShot.ref.getDownloadURL();
+    final String imageUrl = await imageSnapShot.ref.getDownloadURL();
+
+    await FirebaseFirestore.instance.collection('user_data').add({
+      "id":id,
+      "name": name,
+      "phone": phone,
+      "email": email,
+      "password": password,
+      "companyName": companyName,
+      "tradeid": tradeId,
+      "nid": nid,
+      "tradeFileUrl": tradeUrl,
+      "nidFileUrl": nidUrl,
+      "imageUrl": imageUrl
+
+    });
+
   }
 }
