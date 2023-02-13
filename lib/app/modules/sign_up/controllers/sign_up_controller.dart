@@ -18,7 +18,7 @@ class SignUpController extends GetxController {
   var companyName = "".obs;
   var tradeId = "".obs;
   var nid = "".obs;
-  var isLoading = false;
+  var isLoading = false.obs;
 
   File? tradeLicenceFile;
 
@@ -49,14 +49,15 @@ class SignUpController extends GetxController {
   void increment() => count.value++;
 
   Future<void> signUpUser() async {
+    isLoading.value = true;
     try {
-      isLoading = true;
+
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email.value, password: password.value);
 
       await saveUserInfo(userCredential.user!.uid);
 
-      isLoading = false;
+      isLoading.value = false;
       Get.snackbar(
         "Status",
         "Registration Successful",
@@ -68,7 +69,7 @@ class SignUpController extends GetxController {
 
 
     } on FirebaseAuthException catch (e) {
-      isLoading = false;
+      isLoading.value = false;
       if (e.code == 'weak-password') {
 
         Get.snackbar(
@@ -117,25 +118,25 @@ class SignUpController extends GetxController {
   }
 
   Future<void> saveUserInfo(String id) async {
-    TaskSnapshot tradeSnapShot = await storage.ref('user_info').putFile(tradeLicenceFile!);
-    TaskSnapshot nidSnapShot = await storage.ref('user_info').putFile(nidFile!!);
-    TaskSnapshot imageSnapShot = await storage.ref('user_info').putFile(image!);
+    TaskSnapshot tradeSnapShot = await storage.ref('trade_info').putFile(tradeLicenceFile!);
+    TaskSnapshot nidSnapShot = await storage.ref('nid_info').putFile(nidFile!!);
+    TaskSnapshot imageSnapShot = await storage.ref('image_info').putFile(image!);
     final String tradeUrl = await tradeSnapShot.ref.getDownloadURL();
     final String nidUrl = await nidSnapShot.ref.getDownloadURL();
     final String imageUrl = await imageSnapShot.ref.getDownloadURL();
 
     await FirebaseFirestore.instance.collection('user_data').add({
       "id":id,
-      "name": name,
-      "phone": phone,
-      "email": email,
-      "password": password,
-      "companyName": companyName,
-      "tradeid": tradeId,
-      "nid": nid,
-      "tradeFileUrl": tradeUrl,
-      "nidFileUrl": nidUrl,
-      "imageUrl": imageUrl
+      "name": name.toString(),
+      "phone": phone.toString(),
+      "email": email.toString(),
+      "password": password.toString(),
+      "companyName": companyName.toString(),
+      "tradeid": tradeId.toString(),
+      "nid": nid.toString(),
+      "tradeFileUrl": tradeUrl.toString(),
+      "nidFileUrl": nidUrl.toString(),
+      "imageUrl": imageUrl.toString()
 
     });
 

@@ -141,8 +141,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
-                      controller.signUpUser();
+                    onTap: () async {
+                      await controller.signUpUser();
                     },
                     child: Container(
                       height: 60,
@@ -191,11 +191,13 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              controller.isLoading == true ?
-                  Align(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator(),
-                  ) : Container()
+              Obx(() => controller.isLoading == true ?
+              Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(),
+              ) :  Visibility(
+                  visible: false,
+                  child: Text(controller.count.toString())))
             ],
           ),
         ));
@@ -212,6 +214,15 @@ class SignUpScreen extends StatelessWidget {
       ),
       child: TextFormField(
         obscureText: hintTxt == 'Password' ? true : false,
+        keyboardType: hintTxt == 'Email Address' ?
+            TextInputType.emailAddress :
+                  hintTxt == 'Phone No' ?
+              TextInputType.phone :
+                  hintTxt == 'Password' ? TextInputType.text :
+          hintTxt == 'Your Name' ? TextInputType.text :
+          hintTxt == 'Company Name' ? TextInputType.text :
+              TextInputType.number
+        ,
         decoration: InputDecoration(
           prefixIcon: iconsymble,
           border: InputBorder.none,
@@ -222,7 +233,15 @@ class SignUpScreen extends StatelessWidget {
               controller.email.value = value.toString() :
               hintTxt == 'Password' ?
                   controller.password.value = value.toString() :
-                  controller.name.value = value.toString();
+                  hintTxt == 'Your Name' ?
+                  controller.name.value = value.toString() :
+                  hintTxt == 'Phone No' ?
+                      controller.phone.value = value.toString() :
+                  hintTxt == 'Company Name' ?
+                  controller.companyName.value = value.toString() :
+                  hintTxt == 'Trade License No' ?
+                  controller.tradeId.value = value.toString()  :
+                      controller.nid.value = value.toString();
 
         },
       ),
@@ -247,12 +266,12 @@ class upload_file extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () async {
         uploadTitle == 'Upload Trade License:' ?
-           controller.getFile('trade') :
+          await  controller.getFile('trade') :
         uploadTitle == 'Upload Nid Card:' ?
-            controller.getFile('nid') :
-            controller.getFile('image') ;
+        await controller.getFile('nid') :
+        await controller.getFile('image') ;
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
@@ -270,7 +289,7 @@ class upload_file extends StatelessWidget {
               Obx(() => Text(
                 uploadTitle == 'Upload Trade License:' ?
                 controller.tradeFileName == "" ? 'Upload Trade License:' :
-                controller.nidFileName.toString() :   uploadTitle == 'Upload Nid Card:' ?
+                controller.tradeFileName.toString() :   uploadTitle == 'Upload Nid Card:' ?
                 controller.nidFileName == "" ? 'Upload Nid Card:' :
                 controller.nidFileName.toString() : controller.imageName == "" ?
                 'Upload Photo:' : controller.imageName.toString(),
