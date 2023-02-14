@@ -118,9 +118,9 @@ class SignUpController extends GetxController {
   }
 
   Future<void> saveUserInfo(String id) async {
-    TaskSnapshot tradeSnapShot = await storage.ref('trade_info').putFile(tradeLicenceFile!);
-    TaskSnapshot nidSnapShot = await storage.ref('nid_info').putFile(nidFile!!);
-    TaskSnapshot imageSnapShot = await storage.ref('image_info').putFile(image!);
+    TaskSnapshot tradeSnapShot = await storage.ref(tradeFileName+'trade_info').putFile(tradeLicenceFile!);
+    TaskSnapshot nidSnapShot = await storage.ref(nidFileName+'nid_info').putFile(nidFile!!);
+    TaskSnapshot imageSnapShot = await storage.ref(imageName+'image_info').putFile(image!);
     final String tradeUrl = await tradeSnapShot.ref.getDownloadURL();
     final String nidUrl = await nidSnapShot.ref.getDownloadURL();
     final String imageUrl = await imageSnapShot.ref.getDownloadURL();

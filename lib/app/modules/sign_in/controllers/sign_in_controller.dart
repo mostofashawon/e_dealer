@@ -10,6 +10,7 @@ class SignInController extends GetxController {
   final count = 0.obs;
   var email = "".obs;
   var password = "".obs;
+  var isLoading = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -25,13 +26,17 @@ class SignInController extends GetxController {
   void increment() => count.value++;
 
   Future<void> signInUser() async {
+    isLoading.value = true;
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email.value, password: password.value);
 
-      Get.offNamed(Routes.HOME);
+      isLoading.value = false;
+
+      Get.offNamed(Routes.BASE);
 
     } on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       if (e.code == 'user-not-found') {
 
         Get.snackbar(
