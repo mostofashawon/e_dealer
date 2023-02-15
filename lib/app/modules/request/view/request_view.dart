@@ -12,7 +12,7 @@ class _RequestViewState extends State<RequestView> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('Request'),
+        child: Text('all products in here'),
       ),
     );
   }
