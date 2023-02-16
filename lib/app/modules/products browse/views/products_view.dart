@@ -84,16 +84,110 @@ class _ProductsViewState extends State<ProductsView> {
                     ),
                   ),
                   myproductBox("Cocola mini pack"),
-                  myproductBox("Deco Mini Pack"),
                 ],
               ),
             ),
           ),
           Expanded(
             flex: 1,
-            child: Container(
-                // color: Colors.blueAccent,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.black,
+                  ),
                 ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Center(
+                                    child: Text(
+                                  "Total :",
+                                  style: TextStyle(
+                                    fontSize: screenheight * 0.022,
+                                  ),
+                                )),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Center(
+                                    child: Text(
+                                  "12,342.90",
+                                  style: TextStyle(
+                                    fontSize: screenheight * 0.022,
+                                  ),
+                                )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 1,
+                      color: Colors.black,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        // color: Colors.grey,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.black54,
+                                child: Center(
+                                  child: Text(
+                                    "Save",
+                                    style: TextStyle(
+                                      fontSize: screenheight * 0.022,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 1,
+                              color: Colors.black,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: GestureDetector(
+                                child: Container(
+                                  color: Colors.lightBlue,
+                                  child: Center(
+                                    child: Text(
+                                      "Send Request",
+                                      style: TextStyle(
+                                        fontSize: screenheight * 0.022,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
           Expanded(
             flex: 1,
@@ -130,7 +224,7 @@ class _ProductsViewState extends State<ProductsView> {
             ),
             Spacer(),
             Container(
-              width: 100,
+              width: screenWidth * 0.20,
               color: Colors.white,
               child: Center(
                 child: Text(
