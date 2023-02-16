@@ -1,3 +1,4 @@
+import 'package:e_dealer/app/modules/home/views/product_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,6 +11,19 @@ class HomeView extends GetView<HomeController> {
 
     var screenheight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
+
+    var boshundharaGroup = [
+         "Cocola Noodles", "Fiffen Maggi noodles","Coock salt noodle","Pata Noodles","Tissues","Boshundhara Oil ",
+    "Boshundhara Ata "
+    ];
+    var pranRflGroup = [
+      "Bisk Club Biscuits", "PRAN Potata","Fit Crackers","All Time Bread","All Time Honeycomb","All Time Bun",
+      "Wonder"
+    ];
+
+    var teerGroup = [
+      "Teer Ata", "Teer Sugar","Teer Firni","Teer Halim Mix","Teer oil","Teer Rice",
+    ];
 
 
     return Scaffold(
@@ -42,6 +56,7 @@ class HomeView extends GetView<HomeController> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
                     padding:  EdgeInsets.only(
@@ -112,8 +127,6 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   ),
-
-                  Spacer(),
                   Padding(
                     padding: EdgeInsets.only(
                         right: screenWidth * 0.030,
@@ -226,7 +239,7 @@ class HomeView extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "বায়ুদূষণ (নিয়ন্ত্রণ) বিধিমালা, ২০২২",
+                            "10 units Bashundhara Biscuits has been delivered",
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.black,
@@ -242,79 +255,302 @@ class HomeView extends GetView<HomeController> {
                   );
                 })
               ),
-              Padding(
-                padding:  EdgeInsets.only(
-                  top: screenheight * 0.020,
-                  left: 12,
-                  right: 12,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Browse Category',
-                      style: TextStyle(
-                          fontSize: screenheight * 0.020,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blueGrey),
-                    ),
-                  ],
+
+              Divider(),
+              SizedBox(
+                height: screenheight * 0.020,
+              ),
+              Text(
+                "All Dealership Name",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenheight * 0.020,
+                  color: Colors.blueGrey
                 ),
               ),
-              SizedBox(height: screenheight * 0.020,),
+              SizedBox(
+                height: screenheight * 0.020,
+              ),
               Expanded(
                 child: Container(
                   width: screenWidth,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: GridView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: 18,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 2,
-                      crossAxisSpacing: 2,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(
+                        40,
+                      ),
+                      topRight: Radius.circular(
+                        40,
+                      ),
                     ),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.blueGrey,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                    color: Colors.grey,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        // New Dealership categories......................//new dealership...//
+                        Container(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(
-                                Icons.category_outlined,
-                                color: Colors.white,
-                                size: 40,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                ),
+                                child: Text(
+                                  "Boshundhara Group",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: screenheight * 0.022,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
-                              Text(
-                                "Bashundhara",
-                                style: TextStyle(
-                                  color: Colors.white,
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                height: 100,
+                                width: screenWidth,
+                                // color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 15,
+                                    left: 5,
+                                    bottom: 15,
+                                  ),
+                                  child: ListView(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[0],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[1],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[2],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[3],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[4],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[5],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: boshundharaGroup[6],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      );
-                    },
+
+                        // New Dealership categories......................//new dealership...//
+
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                ),
+                                child: Text(
+                                  "Pran RFL Group",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: screenheight * 0.022,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                height: 100,
+                                width: screenWidth,
+                                // color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 15,
+                                    left: 5,
+                                    bottom: 15,
+                                  ),
+                                  child: ListView(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[0],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[1],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[2],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[3],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[4],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[5],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: pranRflGroup[6],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                ),
+                                child: Text(
+                                  "Teer Group",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: screenheight * 0.022,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                height: 100,
+                                width: screenWidth,
+                                // color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 15,
+                                    left: 5,
+                                    bottom: 15,
+                                  ),
+                                  child: ListView(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: teerGroup[0],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: teerGroup[1],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: teerGroup[2],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: teerGroup[3],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: teerGroup[4],
+                                      ),
+                                      productItems(
+                                        screenheight: screenheight,
+                                        productName: teerGroup[5],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              )
+              ),
 
 
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class productItems extends StatelessWidget {
+  const productItems({
+    super.key,
+    required this.screenheight,
+    required this.productName,
+  });
+
+  final double screenheight;
+  final String productName;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Get.to(() => ProductsView(productName));
+      },
+      child: Row(
+        children: [
+          Container(
+            height: 60,
+            margin: EdgeInsets.only(right: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.white,
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  productName,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: screenheight * 0.018,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

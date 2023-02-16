@@ -6,12 +6,14 @@ import 'package:get/get.dart';
 import 'package:e_dealer/app/modules/home/bindings/home_binding.dart';
 import 'package:e_dealer/app/modules/home/views/home_view.dart';
 
+import '../modules/splash_screen/splash_screen.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.BASE;
+  static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(
@@ -32,6 +34,11 @@ class AppPages {
     GetPage(
       name: _Paths.BASE,
       page: () => BaseView(),
+      // binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.Splash,
+      page: () => SplashScreen(),
       // binding: HomeBinding(),
     )
   ];
