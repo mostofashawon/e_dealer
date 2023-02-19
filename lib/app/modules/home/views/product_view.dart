@@ -1,21 +1,19 @@
+import 'package:e_dealer/app/modules/home/views/mycart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 
 class ProductsView extends StatefulWidget {
-
   String? productName;
   String? productPrice;
   String? totalPrice;
 
-   ProductsView(String productName,String productPrice){
-     this.productName = productName;
-     this.productPrice = productPrice;
-     this.totalPrice = productPrice;
-   }
-
-
+  ProductsView(String productName, String productPrice) {
+    this.productName = productName;
+    this.productPrice = productPrice;
+    this.totalPrice = productPrice;
+  }
 
   @override
   State<ProductsView> createState() => _ProductsViewState();
@@ -32,209 +30,211 @@ class _ProductsViewState extends State<ProductsView> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 2,
-        elevation: 0.0,
-        backgroundColor: Colors.blueGrey,
-        title: Text(
-          'E-Dealer',
-          style: TextStyle(
-            color: Colors.white,
+        appBar: AppBar(
+          scrolledUnderElevation: 2,
+          elevation: 0.0,
+          backgroundColor: Colors.blueGrey,
+          title: Text(
+            'E-Dealer',
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
+          centerTitle: true,
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Icon(
+          //       Icons.search,
+          //       color: Colors.white,
+          //     ),
+          //   ),
+          //   Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Icon(
+          //       Icons.notifications_none_outlined,
+          //       color: Colors.white,
+          //     ),
+          //   )
+          // ],
         ),
-        centerTitle: true,
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.all(8.0),
-        //     child: Icon(
-        //       Icons.search,
-        //       color: Colors.white,
-        //     ),
-        //   ),
-        //   Padding(
-        //     padding: const EdgeInsets.all(8.0),
-        //     child: Icon(
-        //       Icons.notifications_none_outlined,
-        //       color: Colors.white,
-        //     ),
-        //   )
-        // ],
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Container(
-                  color: Colors.white30,
-                  child: Column(
-                    children: [
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: Container(
-                      //     height: 60,
-                      //     decoration: BoxDecoration(
-                      //         border: Border.all(
-                      //       width: 1,
-                      //       color: Colors.grey,
-                      //     )),
-                      //     child: Padding(
-                      //       padding: const EdgeInsets.symmetric(
-                      //         horizontal: 20,
-                      //       ),
-                      //       child: Row(
-                      //         children: [
-                      //           Text(
-                      //             "Cocola Noodles",
-                      //             style: TextStyle(
-                      //               fontSize: 22,
-                      //             ),
-                      //           ),
-                      //           Spacer(),
-                      //           Icon(
-                      //             Icons.search,
-                      //             size: 40,
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      myproductBox(widget.productName.toString()),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  flex: 3,
                   child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                    ),
+                    color: Colors.white30,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                          "Total :",
-                                          style: TextStyle(
-                                            fontSize: screenheight * 0.022,
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                          widget.totalPrice.toString(),
-                                          style: TextStyle(
-                                            fontSize: screenheight * 0.022,
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 1,
-                          color: Colors.black,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            // color: Colors.grey,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      await controller.saveData(widget.productName.toString(),
-                                      widget.totalPrice.toString());
-                                    },
-                                    child: Container(
-                                      color: Colors.black54,
-                                      child: Center(
-                                        child: Text(
-                                          "Save",
-                                          style: TextStyle(
-                                            fontSize: screenheight * 0.022,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 1,
-                                  color: Colors.black,
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      await controller.saveData(widget.productName.toString(),
-                                          widget.totalPrice.toString());
-                                    },
-                                    child: Container(
-                                      color: Colors.white,
-                                      child: Center(
-                                        child: Text(
-                                          "Send Request",
-                                          style: TextStyle(
-                                            fontSize: screenheight * 0.022,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: Container(
+                        //     height: 60,
+                        //     decoration: BoxDecoration(
+                        //         border: Border.all(
+                        //       width: 1,
+                        //       color: Colors.grey,
+                        //     )),
+                        //     child: Padding(
+                        //       padding: const EdgeInsets.symmetric(
+                        //         horizontal: 20,
+                        //       ),
+                        //       child: Row(
+                        //         children: [
+                        //           Text(
+                        //             "Cocola Noodles",
+                        //             style: TextStyle(
+                        //               fontSize: 22,
+                        //             ),
+                        //           ),
+                        //           Spacer(),
+                        //           Icon(
+                        //             Icons.search,
+                        //             size: 40,
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        myproductBox(widget.productName.toString()),
                       ],
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  // color: Colors.blueGrey,
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        "Total :",
+                                        style: TextStyle(
+                                          fontSize: screenheight * 0.022,
+                                        ),
+                                      )),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        widget.totalPrice.toString(),
+                                        style: TextStyle(
+                                          fontSize: screenheight * 0.022,
+                                        ),
+                                      )),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 1,
+                            color: Colors.black,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              // color: Colors.grey,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        await controller.saveData(
+                                            widget.productName.toString(),
+                                            widget.totalPrice.toString());
+                                        Get.to(() => MyCartView());
+                                      },
+                                      child: Container(
+                                        color: Colors.black54,
+                                        child: Center(
+                                          child: Text(
+                                            "Save",
+                                            style: TextStyle(
+                                              fontSize: screenheight * 0.022,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 1,
+                                    color: Colors.black,
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        await controller.saveData(
+                                            widget.productName.toString(),
+                                            widget.totalPrice.toString());
+                                      },
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Center(
+                                          child: Text(
+                                            "Send Request",
+                                            style: TextStyle(
+                                              fontSize: screenheight * 0.022,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Obx(() => controller.isLoading == true ?
-          Align(
-            alignment: Alignment.center,
-            child: CircularProgressIndicator(),
-          ) :  Visibility(
-              visible: false,
-              child: Text(controller.count.toString())))
-        ],
-      )
-    );
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      // color: Colors.blueGrey,
+                      ),
+                ),
+              ],
+            ),
+            Obx(() => controller.isLoading == true
+                ? Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(),
+                  )
+                : Visibility(
+                    visible: false, child: Text(controller.count.toString())))
+          ],
+        ));
   }
 
   Widget myproductBox(String productName) {
@@ -284,11 +284,13 @@ class _ProductsViewState extends State<ProductsView> {
             InkWell(
               onTap: () {
                 setState(() {
-                  if(counter > 0){
+                  if (counter > 0) {
                     counter--;
-                    widget.totalPrice = (int.parse(widget.totalPrice.toString()) -  int.parse(widget.productPrice.toString())).toString();
+                    widget.totalPrice =
+                        (int.parse(widget.totalPrice.toString()) -
+                                int.parse(widget.productPrice.toString()))
+                            .toString();
                   }
-
                 });
               },
               child: Container(
@@ -321,7 +323,9 @@ class _ProductsViewState extends State<ProductsView> {
               onTap: () {
                 setState(() {
                   counter++;
-                  widget.totalPrice = (int.parse(widget.totalPrice.toString()) + int.parse(widget.productPrice.toString())).toString();
+                  widget.totalPrice = (int.parse(widget.totalPrice.toString()) +
+                          int.parse(widget.productPrice.toString()))
+                      .toString();
                 });
               },
               child: Container(
