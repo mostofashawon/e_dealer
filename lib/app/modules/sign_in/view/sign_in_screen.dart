@@ -44,85 +44,87 @@ class SignInScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Stack(
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 200,
-                    width: 200,
-                    child: Image.asset("assets/images/dealer.png"),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  signin_field(
-                    "User Mail",
-                    Icon(
-                      Icons.login,
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 200,
+                      width: 200,
+                      child: Image.asset("assets/images/dealer.png"),
                     ),
-                  ),
-                  signin_field(
-                    "Password",
-                    Icon(
-                      Icons.password,
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      controller.signInUser();
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        left: 30,
-                        right: 30,
-                        top: 30,
+                    signin_field(
+                      "User Mail",
+                      Icon(
+                        Icons.login,
                       ),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blueGrey,
+                    ),
+                    signin_field(
+                      "Password",
+                      Icon(
+                        Icons.password,
                       ),
-                      child: Center(
-                        child: Text(
-                          "Log IN",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: screenHeight * 0.030,
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        controller.signInUser();
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                          top: 30,
+                        ),
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blueGrey,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Log In",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: screenHeight * 0.030,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Not Registered ? ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.green,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => SignUpScreen());
-                        },
-                        child: Text(
-                          "Sign up Now",
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Not Registered ? ",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22,
+                            fontSize: 18,
                             color: Colors.green,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => SignUpScreen());
+                          },
+                          child: Text(
+                            "Sign up Now",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               Obx(() => controller.isLoading == true ?
               Align(
