@@ -288,7 +288,7 @@ class _ProductsViewState extends State<ProductsView> {
                   color: Colors.grey,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(15.0),
                   child: Icon(
                     Icons.add,
                     size: screenheight * 0.050,
