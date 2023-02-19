@@ -13,16 +13,36 @@ class HomeView extends GetView<HomeController> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     var boshundharaGroup = [
-         "Cocola Noodles", "Fiffen Maggi noodles","Coock salt noodle","Pata Noodles","Tissues","Boshundhara Oil ",
-    "Boshundhara Ata "
+      { "name": "Boshundhara Ata", "price": "110" },
+      { "name": "Tiffen Maggi noodles", "price": "25" },
+      { "name": "Fit Crackers", "price": "60" },
+      { "name": "Baby salt noodles", "price": "90" },
+      { "name": "Pata Noodles", "price": "200" },
+      { "name": "Tissues", "price": "40" }
     ];
     var pranRflGroup = [
-      "Bisk Club Biscuits", "PRAN Potata","Fit Crackers","All Time Bread","All Time Honeycomb","All Time Bun",
-      "Wonder"
+      { "name": "Bisk Club Biscuits", "price": "110" },
+      { "name": "PRAN Potata", "price": "25" },
+      { "name": "Fit Crackers", "price": "60" },
+      { "name": "All Time Honeycomb", "price": "90" },
+      { "name": "All Time Bun", "price": "200" },
+      { "name": "Wonder", "price": "40" }
     ];
 
+
+
+
     var teerGroup = [
-      "Teer Ata", "Teer Sugar","Teer Firni","Teer Halim Mix","Teer oil","Teer Rice",
+
+      { "name": "Teer Ata", "price": "85" },
+      { "name": "Teer Sugar", "price": "45" },
+      { "name": "Teer Firni", "price": "120" },
+      { "name": "Teer Halim Mix", "price": "120" },
+      { "name": "Teer oil", "price": "180" },
+      { "name": "Teer Rice", "price": "60" }
+
+
+
     ];
 
 
@@ -52,7 +72,8 @@ class HomeView extends GetView<HomeController> {
       ),
       body: SafeArea(
         child: Scaffold(
-          body:Column(
+          body:
+          Column(
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -287,217 +308,231 @@ class HomeView extends GetView<HomeController> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        // New Dealership categories......................//new dealership...//
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                ),
-                                child: Text(
-                                  "Boshundhara Group",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: screenheight * 0.022,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                ),
-                                height: 100,
-                                width: screenWidth,
-                                // color: Colors.white,
-                                child: Padding(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          // New Dealership categories......................//new dealership...//
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
                                   padding: const EdgeInsets.only(
-                                    top: 15,
-                                    left: 5,
-                                    bottom: 15,
+                                    left: 20,
                                   ),
-                                  child: ListView(
-                                    physics: BouncingScrollPhysics(),
-                                    scrollDirection: Axis.horizontal,
-                                    children: [
-
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[0],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[1],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[2],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[3],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[4],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[5],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: boshundharaGroup[6],
-                                      ),
-                                    ],
+                                  child: Text(
+                                    "Boshundhara Group",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenheight * 0.022,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
+                                  height: 100,
+                                  width: screenWidth,
+                                  // color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 15,
+                                      left: 5,
+                                      bottom: 15,
+                                    ),
+                                    child: ListView(
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: boshundharaGroup[0]['name'].toString(),
+                                          productPrice: boshundharaGroup[0]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: boshundharaGroup[1]['name'].toString(),
+                                          productPrice: boshundharaGroup[1]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: boshundharaGroup[2]['name'].toString(),
+                                          productPrice: boshundharaGroup[2]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: boshundharaGroup[3]['name'].toString(),
+                                          productPrice: boshundharaGroup[3]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: boshundharaGroup[4]['name'].toString(),
+                                          productPrice: boshundharaGroup[4]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: boshundharaGroup[5]['name'].toString(),
+                                          productPrice: boshundharaGroup[5]['price'].toString(),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
 
-                        // New Dealership categories......................//new dealership...//
+                          // New Dealership categories......................//new dealership...//
 
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                ),
-                                child: Text(
-                                  "Pran RFL Group",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: screenheight * 0.022,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                ),
-                                height: 100,
-                                width: screenWidth,
-                                // color: Colors.white,
-                                child: Padding(
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
                                   padding: const EdgeInsets.only(
-                                    top: 15,
-                                    left: 5,
-                                    bottom: 15,
+                                    left: 20,
                                   ),
-                                  child: ListView(
-                                    physics: BouncingScrollPhysics(),
-                                    scrollDirection: Axis.horizontal,
-                                    children: [
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[0],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[1],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[2],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[3],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[4],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[5],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: pranRflGroup[6],
-                                      ),
-                                    ],
+                                  child: Text(
+                                    "Pran RFL Group",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenheight * 0.022,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
+                                  height: 100,
+                                  width: screenWidth,
+                                  // color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 15,
+                                      left: 5,
+                                      bottom: 15,
+                                    ),
+                                    child: ListView(
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: pranRflGroup[0]['name'].toString(),
+                                          productPrice: pranRflGroup[0]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: pranRflGroup[1]['name'].toString(),
+                                          productPrice: pranRflGroup[1]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: pranRflGroup[2]['name'].toString(),
+                                          productPrice: pranRflGroup[2]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: pranRflGroup[3]['name'].toString(),
+                                          productPrice: pranRflGroup[3]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: pranRflGroup[4]['name'].toString(),
+                                          productPrice: pranRflGroup[4]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: pranRflGroup[5]['name'].toString(),
+                                          productPrice: pranRflGroup[5]['price'].toString(),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                ),
-                                child: Text(
-                                  "Teer Group",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: screenheight * 0.022,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                ),
-                                height: 100,
-                                width: screenWidth,
-                                // color: Colors.white,
-                                child: Padding(
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
                                   padding: const EdgeInsets.only(
-                                    top: 15,
-                                    left: 5,
-                                    bottom: 15,
+                                    left: 20,
                                   ),
-                                  child: ListView(
-                                    physics: BouncingScrollPhysics(),
-                                    scrollDirection: Axis.horizontal,
-                                    children: [
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: teerGroup[0],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: teerGroup[1],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: teerGroup[2],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: teerGroup[3],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: teerGroup[4],
-                                      ),
-                                      productItems(
-                                        screenheight: screenheight,
-                                        productName: teerGroup[5],
-                                      ),
-                                    ],
+                                  child: Text(
+                                    "Teer Group",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenheight * 0.022,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
+                                  height: 100,
+                                  width: screenWidth,
+                                  // color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 15,
+                                      left: 5,
+                                      bottom: 15,
+                                    ),
+                                    child: ListView(
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: teerGroup[0]['name'].toString(),
+                                          productPrice:teerGroup[0]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: teerGroup[1]['name'].toString(),
+                                          productPrice:teerGroup[1]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: teerGroup[2]['name'].toString(),
+                                          productPrice:teerGroup[2]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                            productName: teerGroup[3]['name'].toString(),
+                                            productPrice:teerGroup[3]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: teerGroup[4]['name'].toString(),
+                                          productPrice:teerGroup[4]['price'].toString(),
+                                        ),
+                                        productItems(
+                                          screenheight: screenheight,
+                                          productName: teerGroup[5]['name'].toString(),
+                                          productPrice:teerGroup[5]['price'].toString(),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -517,16 +552,18 @@ class productItems extends StatelessWidget {
     super.key,
     required this.screenheight,
     required this.productName,
+    required this.productPrice
   });
 
   final double screenheight;
   final String productName;
+  final String productPrice;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProductsView(productName));
+        Get.to(() => ProductsView(productName,productPrice));
       },
       child: Row(
         children: [
