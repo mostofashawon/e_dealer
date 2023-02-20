@@ -7,6 +7,7 @@ class MyCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
         appBar: AppBar(
           scrolledUnderElevation: 2,
@@ -46,12 +47,44 @@ class MyCartView extends StatelessWidget {
                 child: Container(
                   // color: Colors.green,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: 100,
                     itemBuilder: (context, index) {
-                      return Text(
-                        "Product name",
-                        style: TextStyle(
-                          fontSize: 20,
+                      index = index + 1;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: index % 2 == 0
+                                ? Colors.grey.shade400
+                                : Colors.grey.shade300,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  index.toString() + ".",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                Text("Product Name"),
+                                Text("01"),
+                                Text(
+                                  "130.78" + "  ৳ ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -68,7 +101,12 @@ class MyCartView extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Text("Total Price :- 1284.90 tk "),
+                        Text(
+                          "Total Price :- 1284.90" + "৳ ",
+                          style: TextStyle(
+                            fontSize: screenheight * 0.022,
+                          ),
+                        ),
                         Spacer(),
                         VerticalDivider(
                           indent: 20,
@@ -83,7 +121,13 @@ class MyCartView extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Text("  Send  "),
+                            child: Text(
+                              "  Send  ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: screenheight * 0.018,
+                              ),
+                            ),
                           ),
                         ),
                       ],
