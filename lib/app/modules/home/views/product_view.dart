@@ -1,7 +1,10 @@
+import 'package:e_dealer/app/modules/base/view/baseview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
+import 'home_view.dart';
+import 'my_cart.dart';
 
 class ProductsView extends StatefulWidget {
 
@@ -70,37 +73,6 @@ class _ProductsViewState extends State<ProductsView> {
                   color: Colors.white30,
                   child: Column(
                     children: [
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: Container(
-                      //     height: 60,
-                      //     decoration: BoxDecoration(
-                      //         border: Border.all(
-                      //       width: 1,
-                      //       color: Colors.grey,
-                      //     )),
-                      //     child: Padding(
-                      //       padding: const EdgeInsets.symmetric(
-                      //         horizontal: 20,
-                      //       ),
-                      //       child: Row(
-                      //         children: [
-                      //           Text(
-                      //             "Cocola Noodles",
-                      //             style: TextStyle(
-                      //               fontSize: 22,
-                      //             ),
-                      //           ),
-                      //           Spacer(),
-                      //           Icon(
-                      //             Icons.search,
-                      //             size: 40,
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       myproductBox(widget.productName.toString()),
                     ],
                   ),
@@ -170,6 +142,7 @@ class _ProductsViewState extends State<ProductsView> {
                                       await controller.saveData(widget.productName.toString(),
                                       widget.totalPrice.toString(),counter.toString());
                                       controller.getData();
+                                      Get.to( () => BaseView());
                                     },
                                     child: Container(
                                       color: Colors.black54,
@@ -195,6 +168,8 @@ class _ProductsViewState extends State<ProductsView> {
                                     onTap: () async {
                                       await controller.saveData(widget.productName.toString(),
                                           widget.totalPrice.toString(),counter.toString());
+                                          controller.getData();
+                                          Get.to( () => MyCartView());
                                     },
                                     child: Container(
                                       color: Colors.white,
@@ -266,7 +241,7 @@ class _ProductsViewState extends State<ProductsView> {
                   ),
                 ),
                 Text(
-                  widget.productPrice.toString(),
+                  widget.productPrice.toString()+" ৳",
                   style: TextStyle(
                     fontSize: 22,
                     color: Colors.white,

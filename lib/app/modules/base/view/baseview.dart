@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../home/views/home_view.dart';
+import '../../home/views/my_cart.dart';
 import '../../request/view/request_view.dart';
 import '../../transaction/view/transaction_view.dart';
 
@@ -17,11 +18,10 @@ class _BaseViewState extends State<BaseView> {
   int currentIndex = 1;
 
   final screens = [
-
-
     TransactionView(),
     HomeView(),
-    RequestView()
+    RequestView(),
+    MyCartView()
 
 
   ];
@@ -58,6 +58,11 @@ class _BaseViewState extends State<BaseView> {
                     Icons.request_page_outlined,
                   ),
                   label: 'Request'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.shopping_bag_outlined,
+                  ),
+                  label: 'My Cart'),
             ],
           ),
           body: screens[currentIndex],

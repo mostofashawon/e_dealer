@@ -42,10 +42,7 @@ class HomeView extends GetView<HomeController> {
       { "name": "Teer oil", "price": "180" },
       { "name": "Teer Rice", "price": "60" }
 
-
-
     ];
-
 
     return Scaffold(
       appBar: AppBar(
@@ -338,7 +335,7 @@ class HomeView extends GetView<HomeController> {
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  height: 100,
+                                  height: 200,
                                   width: screenWidth,
                                   // color: Colors.white,
                                   child: Padding(
@@ -420,7 +417,7 @@ class HomeView extends GetView<HomeController> {
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  height: 100,
+                                  height: 200,
                                   width: screenWidth,
                                   // color: Colors.white,
                                   child: Padding(
@@ -498,7 +495,7 @@ class HomeView extends GetView<HomeController> {
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  height: 100,
+                                  height: 200,
                                   width: screenWidth,
                                   // color: Colors.white,
                                   child: Padding(
@@ -533,7 +530,7 @@ class HomeView extends GetView<HomeController> {
                                           screenheight: screenheight,
                                             productName: teerGroup[3]['name'].toString(),
                                             productPrice:teerGroup[3]['price'].toString(),
-                                          productImage: '',
+                                            productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
@@ -573,20 +570,72 @@ class HomeView extends GetView<HomeController> {
   }
 }
 
+// class productItems extends StatelessWidget {
+//   const productItems({
+//     super.key,
+//     required this.screenheight,
+//     required this.productName,
+//     required this.productPrice,
+//     required this.productImage
+//   });
+//
+//   final double screenheight;
+//   final String productName;
+//   final String productPrice;
+//   final String productImage;
+//
+//
+// //Container(
+// //     child: loading? //first check if loading is true or false
+// //             CircularProgressIndicator(): //show progress on loading = true
+// //                 error?Text("Error"): //when loading = false, and then check error is true or false
+// //                   Text("Loaded and No Error"), //if loading = false and error = false, then show this text
+// // )
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: () {
+//         Get.to(() => ProductsView(productName,productPrice));
+//       },
+//       child: Container(
+//         height: 100,
+//         margin: EdgeInsets.only(right: 10),
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(5),
+//           color: Colors.white,
+//         ),
+//         child: Row(
+//           children: [
+//             Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Text(
+//                 productName,
+//                 style: TextStyle(
+//                   color: Colors.black,
+//                   fontSize: screenheight * 0.018,
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//
+//     );
+//   }
+// }
+
 class productItems extends StatelessWidget {
-  const productItems({
-    super.key,
-    required this.screenheight,
-    required this.productName,
-    required this.productPrice,
-    required this.productImage
-  });
+  const productItems(
+      {super.key,
+        required this.screenheight,
+        required this.productName,
+        required this.productPrice,
+        required this.productImage});
 
   final double screenheight;
   final String productName;
   final String productPrice;
   final String productImage;
-
 
 //Container(
 //     child: loading? //first check if loading is true or false
@@ -596,10 +645,14 @@ class productItems extends StatelessWidget {
 // )
   @override
   Widget build(BuildContext context) {
-    print('Found product image'+productImage);
+    bool hasImage = true;
+    String myimgLink =
+        "https://res.cloudinary.com/mod-store/image/upload/v1676889577/E-Dealer/b-ata_tan8i0.png";
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return InkWell(
       onTap: () {
-        Get.to(() => ProductsView(productName,productPrice));
+        Get.to(() => ProductsView(productName, productPrice));
       },
       child: Container(
         height: 100,
@@ -608,22 +661,41 @@ class productItems extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           color: Colors.white,
         ),
-        child: Row(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                productName,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: screenheight * 0.018,
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: 180,
+                child: productImage == '' || productImage == null
+                    ? Image.asset(
+                  "assets/images/noimage.png",
+                  fit: BoxFit.cover,
+                ) : Image.network(
+                  myimgLink,
+                  fit: BoxFit.cover,
+                )
+                // ignore: dead_code
+                     ,
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    productName,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: screenheight * 0.018,
+                    ),
+                  ),
                 ),
               ),
             ),
           ],
         ),
       ),
-
     );
   }
 }
