@@ -8,6 +8,7 @@ import '../../utillity/colors.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  bool hasImage = false;
   @override
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.of(context).size.height;
@@ -41,6 +42,7 @@ class HomeView extends GetView<HomeController> {
 
     return Scaffold(
       appBar: AppBar(
+        // backgroundColor: ColorResources.RED,
         backgroundColor: Colors.blueGrey,
         title: Text(
           'E-Dealer',
@@ -320,7 +322,7 @@ class HomeView extends GetView<HomeController> {
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  height: 100,
+                                  height: screenheight * 0.170,
                                   width: screenWidth,
                                   // color: Colors.white,
                                   child: Padding(
@@ -424,7 +426,7 @@ class HomeView extends GetView<HomeController> {
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  height: 100,
+                                  height: 200,
                                   width: screenWidth,
                                   // color: Colors.white,
                                   child: Padding(
@@ -513,7 +515,7 @@ class HomeView extends GetView<HomeController> {
                                   margin: EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  height: 100,
+                                  height: 200,
                                   width: screenWidth,
                                   // color: Colors.white,
                                   child: Padding(
@@ -618,6 +620,10 @@ class productItems extends StatelessWidget {
 // )
   @override
   Widget build(BuildContext context) {
+    bool hasImage = true;
+    String myimgLink =
+        "https://res.cloudinary.com/mod-store/image/upload/v1676889577/E-Dealer/b-ata_tan8i0.png";
+    var screenWidth = MediaQuery.of(context).size.width;
     print('Found product image' + productImage);
     return InkWell(
       onTap: () {
@@ -630,15 +636,35 @@ class productItems extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           color: Colors.white,
         ),
-        child: Row(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                productName,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: screenheight * 0.018,
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: 180,
+                child: hasImage
+                    ? Image.network(
+                        myimgLink,
+                        fit: BoxFit.cover,
+                      )
+                    // ignore: dead_code
+                    : Image.asset(
+                        "assets/images/noimage.png",
+                        fit: BoxFit.cover,
+                      ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    productName,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: screenheight * 0.018,
+                    ),
+                  ),
                 ),
               ),
             ),

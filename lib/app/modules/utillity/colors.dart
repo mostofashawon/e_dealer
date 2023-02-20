@@ -18,24 +18,19 @@ class ColorResources {
   static const Color DNC_STORE_COLOR = Color(0xffF2994A);
   static const Color RED = Color(0xffEB5757);
 
-
-
-  static const Map<int, Color> colorMap =
-  {
-    50:Color(0x10192D6B),
-    100:Color(0x20192D6B),
-    200:Color(0x30192D6B),
-    300:Color(0x40192D6B),
-    400:Color(0x50192D6B),
-    500:Color(0x60192D6B),
-    600:Color(0x70192D6B),
-    700:Color(0x80192D6B),
-    800:Color(0x90192D6B),
-    900:Color(0xff192D6B),
+  static const Map<int, Color> colorMap = {
+    50: Color(0x10192D6B),
+    100: Color(0x20192D6B),
+    200: Color(0x30192D6B),
+    300: Color(0x40192D6B),
+    400: Color(0x50192D6B),
+    500: Color(0x60192D6B),
+    600: Color(0x70192D6B),
+    700: Color(0x80192D6B),
+    800: Color(0x90192D6B),
+    900: Color(0xff192D6B),
   };
 
-  static const MaterialColor PRIMARY_MATERIAL = MaterialColor(0xFF192D6B, colorMap);
-
-
-
+  static const MaterialColor PRIMARY_MATERIAL =
+      MaterialColor(0xFF192D6B, colorMap);
 }
