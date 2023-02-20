@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyCartView extends StatelessWidget {
-  const MyCartView({super.key});
+class MyNewCartView extends StatelessWidget {
+  const MyNewCartView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,43 +43,159 @@ class MyCartView extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 8,
+                flex: 1,
                 child: Container(
-                  // color: Colors.green,
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    border: Border.all(width: 1, color: Colors.grey),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "SL",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                          ),
+                        ),
+                        Container(
+                          height: screenheight,
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "P. Name",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                          ),
+                        ),
+                        Container(
+                          height: screenheight,
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "Qn",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                          ),
+                        ),
+                        Container(
+                          height: screenheight,
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "Price",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Expanded(
+                flex: 15,
+                child: Container(
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: 100,
+                    itemCount: 50,
                     itemBuilder: (context, index) {
                       index = index + 1;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: index % 2 == 0
+                              ? Color(0xfff8f8f8)
+                              : Color(0xffefefef),
                         ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: index % 2 == 0
-                                ? Colors.grey.shade400
-                                : Colors.grey.shade300,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 5),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 0, vertical: 0),
+                          child: IntrinsicHeight(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  index.toString() + ".",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    child: Center(
+                                      child: Text(
+                                        index.toString(),
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                Text("Product Name"),
-                                Text("01"),
-                                Text(
-                                  "130.78" + "  ৳ ",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
+                                VerticalDivider(
+                                  thickness: 1,
+                                  color: Colors.black,
+                                  width: 1,
+                                ),
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    child: Center(child: Text("Product Name")),
+                                  ),
+                                ),
+                                VerticalDivider(
+                                  thickness: 1,
+                                  color: Colors.black,
+                                  width: 1,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    child: Center(child: Text("01")),
+                                  ),
+                                ),
+                                VerticalDivider(
+                                  thickness: 1,
+                                  color: Colors.black,
+                                  width: 1,
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    child: Center(
+                                      child: Text(
+                                        "130.78" + "  ৳ ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -92,7 +208,7 @@ class MyCartView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: Container(
                   color: Colors.white,
                   child: Padding(

@@ -59,7 +59,7 @@ class HomeView extends GetView<HomeController> {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => MyCartView());
+              Get.to(() => MyNewCartView());
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 15),
