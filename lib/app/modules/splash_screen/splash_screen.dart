@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../routes/app_pages.dart';
@@ -26,6 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(milliseconds: 3000), () {
 
       if (FirebaseAuth.instance!.currentUser != null) {
+        GetStorage _getStorage = GetStorage('app_storage');
+        _getStorage.write("user_id",FirebaseAuth.instance!.currentUser!.uid.toString());
         Get.offNamed(Routes.BASE);
       } else {
         Get.offNamed(Routes.SIGN_IN);

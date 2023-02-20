@@ -168,7 +168,8 @@ class _ProductsViewState extends State<ProductsView> {
                                   child: GestureDetector(
                                     onTap: () async {
                                       await controller.saveData(widget.productName.toString(),
-                                      widget.totalPrice.toString());
+                                      widget.totalPrice.toString(),counter.toString());
+                                      controller.getData();
                                     },
                                     child: Container(
                                       color: Colors.black54,
@@ -193,7 +194,7 @@ class _ProductsViewState extends State<ProductsView> {
                                   child: GestureDetector(
                                     onTap: () async {
                                       await controller.saveData(widget.productName.toString(),
-                                          widget.totalPrice.toString());
+                                          widget.totalPrice.toString(),counter.toString());
                                     },
                                     child: Container(
                                       color: Colors.white,

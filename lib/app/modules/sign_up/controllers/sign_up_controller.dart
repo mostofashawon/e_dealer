@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:io';
 
+import 'package:get_storage/get_storage.dart';
+
 
 class SignUpController extends GetxController {
   //TODO: Implement SignUpController
@@ -56,6 +58,10 @@ class SignUpController extends GetxController {
           .createUserWithEmailAndPassword(email: email.value, password: password.value);
 
       await saveUserInfo(userCredential.user!.uid);
+
+      GetStorage _getStorage = GetStorage('app_storage');
+
+      _getStorage.write("user_id",userCredential.user!.uid.toString());
 
       isLoading.value = false;
       Get.snackbar(
