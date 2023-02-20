@@ -167,7 +167,9 @@ class _ProductsViewState extends State<ProductsView> {
                                       onTap: () async {
                                         await controller.saveData(
                                             widget.productName.toString(),
-                                            widget.totalPrice.toString());
+                                            widget.totalPrice.toString(),
+                                            counter.toString()
+                                        );
                                         Get.to(() => MyCartView());
                                       },
                                       child: Container(
@@ -194,7 +196,7 @@ class _ProductsViewState extends State<ProductsView> {
                                       onTap: () async {
                                         await controller.saveData(
                                             widget.productName.toString(),
-                                            widget.totalPrice.toString());
+                                            widget.totalPrice.toString(),counter.toString());
                                       },
                                       child: Container(
                                         color: Colors.white,
