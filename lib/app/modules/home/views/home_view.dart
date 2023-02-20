@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../utillity/colors.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -74,6 +75,7 @@ class HomeView extends GetView<HomeController> {
         child: Scaffold(
           body:
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,12 +283,15 @@ class HomeView extends GetView<HomeController> {
               SizedBox(
                 height: screenheight * 0.020,
               ),
-              Text(
-                "All Dealership Name",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: screenheight * 0.020,
-                  color: Colors.blueGrey
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "All Dealership",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenheight * 0.020,
+                    color: Colors.blueGrey
+                  ),
                 ),
               ),
               SizedBox(
@@ -304,7 +309,7 @@ class HomeView extends GetView<HomeController> {
                         40,
                       ),
                     ),
-                    color: Colors.grey,
+                    color: ColorResources.LIGHT_GREY,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -325,7 +330,7 @@ class HomeView extends GetView<HomeController> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: screenheight * 0.022,
-                                      color: Colors.white,
+                                      color: ColorResources.BLACK_MAERIAL,
                                     ),
                                   ),
                                 ),
@@ -351,31 +356,37 @@ class HomeView extends GetView<HomeController> {
                                           screenheight: screenheight,
                                           productName: boshundharaGroup[0]['name'].toString(),
                                           productPrice: boshundharaGroup[0]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: boshundharaGroup[1]['name'].toString(),
                                           productPrice: boshundharaGroup[1]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: boshundharaGroup[2]['name'].toString(),
                                           productPrice: boshundharaGroup[2]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: boshundharaGroup[3]['name'].toString(),
                                           productPrice: boshundharaGroup[3]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: boshundharaGroup[4]['name'].toString(),
                                           productPrice: boshundharaGroup[4]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: boshundharaGroup[5]['name'].toString(),
                                           productPrice: boshundharaGroup[5]['price'].toString(),
+                                          productImage: '',
                                         ),
 
                                       ],
@@ -401,7 +412,7 @@ class HomeView extends GetView<HomeController> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: screenheight * 0.022,
-                                      color: Colors.white,
+                                      color: ColorResources.BLACK_MAERIAL,
                                     ),
                                   ),
                                 ),
@@ -426,31 +437,37 @@ class HomeView extends GetView<HomeController> {
                                           screenheight: screenheight,
                                           productName: pranRflGroup[0]['name'].toString(),
                                           productPrice: pranRflGroup[0]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: pranRflGroup[1]['name'].toString(),
                                           productPrice: pranRflGroup[1]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: pranRflGroup[2]['name'].toString(),
                                           productPrice: pranRflGroup[2]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: pranRflGroup[3]['name'].toString(),
                                           productPrice: pranRflGroup[3]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: pranRflGroup[4]['name'].toString(),
                                           productPrice: pranRflGroup[4]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: pranRflGroup[5]['name'].toString(),
                                           productPrice: pranRflGroup[5]['price'].toString(),
+                                          productImage: '',
                                         ),
 
                                       ],
@@ -473,7 +490,7 @@ class HomeView extends GetView<HomeController> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: screenheight * 0.022,
-                                      color: Colors.white,
+                                      color: ColorResources.BLACK_MAERIAL,
                                     ),
                                   ),
                                 ),
@@ -498,31 +515,40 @@ class HomeView extends GetView<HomeController> {
                                           screenheight: screenheight,
                                           productName: teerGroup[0]['name'].toString(),
                                           productPrice:teerGroup[0]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: teerGroup[1]['name'].toString(),
                                           productPrice:teerGroup[1]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: teerGroup[2]['name'].toString(),
                                           productPrice:teerGroup[2]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                             productName: teerGroup[3]['name'].toString(),
                                             productPrice:teerGroup[3]['price'].toString(),
+                                          productImage: '',
                                         ),
                                         productItems(
                                           screenheight: screenheight,
                                           productName: teerGroup[4]['name'].toString(),
                                           productPrice:teerGroup[4]['price'].toString(),
+                                          productImage:'' ,
                                         ),
+
                                         productItems(
                                           screenheight: screenheight,
+
                                           productName: teerGroup[5]['name'].toString(),
                                           productPrice:teerGroup[5]['price'].toString(),
+                                          //1 + 1 == 2 ?? print('check true'):print('chkfalse');
+                                          productImage: '',
                                         ),
                                       ],
                                     ),
@@ -552,43 +578,52 @@ class productItems extends StatelessWidget {
     super.key,
     required this.screenheight,
     required this.productName,
-    required this.productPrice
+    required this.productPrice,
+    required this.productImage
   });
 
   final double screenheight;
   final String productName;
   final String productPrice;
+  final String productImage;
 
+
+//Container(
+//     child: loading? //first check if loading is true or false
+//             CircularProgressIndicator(): //show progress on loading = true
+//                 error?Text("Error"): //when loading = false, and then check error is true or false
+//                   Text("Loaded and No Error"), //if loading = false and error = false, then show this text
+// )
   @override
   Widget build(BuildContext context) {
+    print('Found product image'+productImage);
     return InkWell(
       onTap: () {
         Get.to(() => ProductsView(productName,productPrice));
       },
-      child: Row(
-        children: [
-          Container(
-            height: 60,
-            margin: EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-            ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  productName,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: screenheight * 0.018,
-                  ),
+      child: Container(
+        height: 100,
+        margin: EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.white,
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                productName,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: screenheight * 0.018,
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+
     );
   }
 }

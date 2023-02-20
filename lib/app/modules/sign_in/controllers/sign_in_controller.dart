@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../routes/app_pages.dart';
 
@@ -32,6 +33,9 @@ class SignInController extends GetxController {
           .signInWithEmailAndPassword(email: email.value, password: password.value);
 
       isLoading.value = false;
+
+      GetStorage _getStorage = GetStorage('app_storage');
+      _getStorage.write("user_id",FirebaseAuth.instance!.currentUser!.uid.toString());
 
       Get.offNamed(Routes.BASE);
 
