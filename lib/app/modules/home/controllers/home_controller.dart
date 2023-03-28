@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_dealer/app/modules/base/view/baseview.dart';
+import 'package:e_dealer/app/modules/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../views/my_cart.dart';
 
 class HomeController extends GetxController {
+  //TODO: Implement HomeController
   //TODO: Implement HomeController
 
 
@@ -15,6 +17,10 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
   var isFetching = false.obs;
   var  user_id;
+  var isUploading = false.obs;
+  RxInt totalPrice = 0.obs;
+
+  var points1=<String>[].obs;
 
   var allList;
 
@@ -36,9 +42,7 @@ class HomeController extends GetxController {
   void increment() => count.value++;
 
   Future<void> saveData(String name , String price,String quantity) async {
-
-
-
+    
 
     isLoading.value = true;
 
@@ -57,8 +61,6 @@ class HomeController extends GetxController {
         backgroundColor:Colors.blueGrey,
         snackPosition: SnackPosition.BOTTOM,
       );
-
-      Get.to( () => MyCartView());
     }
     catch(e){
       isLoading.value = false;
@@ -79,10 +81,54 @@ class HomeController extends GetxController {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection("product").where('id', isEqualTo: user_id.toString()).get();
 
     allList = querySnapshot.docs.map((doc) => doc.data()).toList();
+    
+    for(int i = 0; i< allList.length; i++){
+      totalPrice = totalPrice + int.parse(allList[i]["productPrice"]);
+    }
 
     isFetching.value = false;
 
-    print("ressssssssssssss"+allList.toString());
+   
   }
 
+  List<String> toList1() {
+
+    allList.forEach((item) {
+      points1.add(item.toString());
+    });
+
+    return points1.toList();
+  }
+  
+  
+  Future<void> saveCartData() async {
+    isUploading.value = true;
+
+    try{
+      await FirebaseFirestore.instance.collection('my_cart').add({
+        "cart":toList1(),
+      });
+      isUploading.value = false;
+      Get.snackbar(
+        "Status",
+        "Your data has been saved",
+        colorText: Colors.white,
+        backgroundColor:Colors.blueGrey,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      Get.to( () => BaseView());
+    }
+    catch(e){
+      isUploading.value = false;
+      Get.snackbar(
+        "Error",
+        "Something went wrong ..... try again",
+        colorText: Colors.white,
+        backgroundColor:Colors.red,
+        snackPosition: SnackPosition.BOTTOM,
+
+      );
+    }
+  }
 }
